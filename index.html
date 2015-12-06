@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>Timetable</title>
+    <meta name="viewport" content="initialscale=1.0, width=device-width"/>
+    <link rel="stylesheet" href="css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      // Wait for device API libraries to load
+      //
+      function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+      }
+
+      // device APIs are available
+      //
+      function onDeviceReady() {
+        // Now safe to use device APIs
+        //            navigator.geolocation.getCurrentPosition(onSuccess, onError,{enableHighAccuracy: true})
+      }
+    </script>
+  </head>
+  <body onload="onLoad()">
+    <div id="content"></div>
+    <script type="text/javascript" charset="utf-8" src="js/bundle.js"></script>
+  </body>
+</html>
