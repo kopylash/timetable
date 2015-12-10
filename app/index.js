@@ -129,6 +129,12 @@ class App extends React.Component {
                 {
                   name: 'Блок1. АСНД',
                   lecturer: 'Польшакова О.М',
+                  room: '18-418 практика',
+                  time: '8:30 - 10:05'
+                },
+                {
+                  name: 'Блок1. АСНД',
+                  lecturer: 'Польшакова О.М',
                   room: '18-418 лекція',
                   time: '10:25 - 12:00'
                 },
@@ -137,6 +143,12 @@ class App extends React.Component {
                   lecturer: 'Колісник М.П.',
                   room: '18-411',
                   time: '12:20 - 13:55'
+                },
+                {
+                  name: 'Політологія',
+                  lecturer: 'Смірнова В.О.',
+                  room: '18-413 практика',
+                  time: '14:15 - 15:50'
                 }
               ]
             },
@@ -222,17 +234,15 @@ class App extends React.Component {
   }
 
   changeWeek(event, value) {
-    console.log(value);
-    this.state.currentWeek = value;
+    this.setState({currentWeek: value});
   }
-
 
   render() {
     return (
       <div>
         <AppBar
-          title="Campus timetable"
-          style={{boxShadow: ' 0 1px 0px rgba(0, 0, 0, 0.24)'}}
+          title="CAMPUS TIMETABLE"
+          style={{boxShadow: ' 0 1px 0px rgba(0, 0, 0, 0.24)',backgroundColor:'#208843'}}
           showMenuIconButton={false}
           iconElementRight={
             <IconMenu
@@ -244,10 +254,10 @@ class App extends React.Component {
               <MenuItem primaryText="2 тиждень" value="secondWeek" />
             </IconMenu>
             } />
-        <Tabs>
+        <Tabs >
         {this.state.weeks[this.state.currentWeek].days.map(function(day, index) {
           return (
-            <Tab label={day.name} key={index} >
+            <Tab label={day.name} key={index} style={{backgroundColor:'#208843'}}>
               <List>
               {day.lessons.map(function(item, number) {
                 number++;
@@ -261,7 +271,7 @@ class App extends React.Component {
                         top: '27%',
                         left: '12px',
                         padding: '0',
-                        background: 'url(img/number' + number + '.svg) no-repeat #FFA5C4',
+                        background: 'url(img/number' + number + '.svg) no-repeat #FF5722',
                         borderRadius: '36px',
                         backgroundSize: '48px 48px',
                         width: '48px',
