@@ -26,6 +26,11 @@ module.exports = {
           presets: ['react','es2015']
         }
       }
+    ],
+    plugins: [
+      new webpack.ProvidePlugin({
+        'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+      })
     ]
   }
 };

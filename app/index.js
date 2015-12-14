@@ -24,213 +24,72 @@ class App extends React.Component {
     super();
     this.changeWeek = this.changeWeek.bind(this);
     this.state = {
-      currentWeek: 'firstWeek',
+      currentWeek: '1',
+      groupName: 'ft-42',
       weeks: {
-        firstWeek: {
-          days: [
-            {
-              name: 'ПН',
-              lessons: [
-                {
-                  name: 'Блок1. АСНД',
-                  lecturer: 'Польшакова О.М',
-                  room: '18-418 лекція',
-                  time: '10:25 - 12:00'
-                },
-                {
-                  name: 'Іноземна мова професійного спрямування - 2',
-                  lecturer: 'Колісник М.П.',
-                  room: '18-411',
-                  time: '12:20 - 13:55'
-                }
-              ]
-            },
-            {
-              name: 'ВТ',
-              lessons: [
-                {
-                  name: 'Блок1. Тестування та забезпечення кості програмних систем',
-                  lecturer: 'Максимюк А.В.',
-                  room: '18-415 лабораторне заняття',
-                  time: '10:25 - 12:00'
-                },
-                {
-                  name: 'Технології розробки програмного забезпечення - 4. Управління проектами',
-                  lecturer: 'Савицький А.Й.',
-                  room: '18-418 лекція',
-                  time: '12:20 - 13:55'
-                }
-              ]
-            },
-            {
-              name: 'СР',
-              lessons: [
-                {
-                  name: 'CAD/CAM/CAE системи',
-                  lecturer: 'Поліщук М.М.',
-                  room: '18-419 лекція',
-                  time: '10:25 - 12:00'
-                },
-                {
-                  name: 'Захист інформації в комп\'ютерних мережах',
-                  lecturer: 'Пасько В.П.',
-                  room: '18-419 лекція',
-                  time: '12:20 - 13:55'
-                }
-              ]
-            },
-            {
-              name: 'ЧТ',
-              lessons: [
-                {
-                  name: 'Блок1. Тестування та забезпечення кості програмних систем',
-                  lecturer: 'Савицький А.Й.',
-                  room: '18-418 лекція',
-                  time: '10:25 - 12:00'
-                },
-                {
-                  name: 'Іноземна мова професійного спрямування - 2',
-                  lecturer: 'Колісник М.П.',
-                  room: '18-411',
-                  time: '12:20 - 13:55'
-                }
-              ]
-            },
-            {
-              name: 'ПТ',
-              lessons: [
-                {
-                  name: 'Корпоративні інформаційні системи та технології',
-                  lecturer: 'Тимошин Ю.А.',
-                  room: '18-418а лабораторне заняття',
-                  time: '8:30 - 10:05'
-                },
-                {
-                  name: 'Корпоративні інформаційні системи та технології',
-                  lecturer: 'Тимошин Ю.А.',
-                  room: '18-432 лекція',
-                  time: '8:30 - 10:05'
-                },
-                {
-                  name: 'Захист інформації в комп\'ютерних мережах',
-                  lecturer: 'Пасько В.П.',
-                  room: '18-419 лекція',
-                  time: '12:20 - 13:55'
-                }
-              ]
-            }
-          ]
+        1: {
+          days: []
         },
-        secondWeek: {
-          days: [
-            {
-              name: 'ПН',
-              lessons: [
-                {
-                  name: 'Блок1. АСНД',
-                  lecturer: 'Польшакова О.М',
-                  room: '18-418 практика',
-                  time: '8:30 - 10:05'
-                },
-                {
-                  name: 'Блок1. АСНД',
-                  lecturer: 'Польшакова О.М',
-                  room: '18-418 лекція',
-                  time: '10:25 - 12:00'
-                },
-                {
-                  name: 'Іноземна мова професійного спрямування - 2',
-                  lecturer: 'Колісник М.П.',
-                  room: '18-411',
-                  time: '12:20 - 13:55'
-                },
-                {
-                  name: 'Політологія',
-                  lecturer: 'Смірнова В.О.',
-                  room: '18-413 практика',
-                  time: '14:15 - 15:50'
-                }
-              ]
-            },
-            {
-              name: 'ВТ',
-              lessons: [
-                {
-                  name: 'Блок1. Тестування та забезпечення кості програмних систем',
-                  lecturer: 'Максимюк А.В.',
-                  room: '18-415 лабораторне заняття',
-                  time: '10:25 - 12:00'
-                },
-                {
-                  name: 'Технології розробки програмного забезпечення - 4. Управління проектами',
-                  lecturer: 'Савицький А.Й.',
-                  room: '18-418 лекція',
-                  time: '12:20 - 13:55'
-                }
-              ]
-            },
-            {
-              name: 'СР',
-              lessons: [
-                {
-                  name: 'CAD/CAM/CAE системи',
-                  lecturer: 'Поліщук М.М.',
-                  room: '18-419 лекція',
-                  time: '10:25 - 12:00'
-                },
-                {
-                  name: 'Захист інформації в комп\'ютерних мережах',
-                  lecturer: 'Пасько В.П.',
-                  room: '18-419 лекція',
-                  time: '12:20 - 13:55'
-                }
-              ]
-            },
-            {
-              name: 'ЧТ',
-              lessons: [
-                {
-                  name: 'Блок1. Тестування та забезпечення кості програмних систем',
-                  lecturer: 'Савицький А.Й.',
-                  room: '18-418 лекція',
-                  time: '10:25 - 12:00'
-                },
-                {
-                  name: 'Іноземна мова професійного спрямування - 2',
-                  lecturer: 'Колісник М.П.',
-                  room: '18-411',
-                  time: '12:20 - 13:55'
-                }
-              ]
-            },
-            {
-              name: 'ПТ',
-              lessons: [
-                {
-                  name: 'Корпоративні інформаційні системи та технології',
-                  lecturer: 'Тимошин Ю.А.',
-                  room: '18-418а лабораторне заняття',
-                  time: '8:30 - 10:05'
-                },
-                {
-                  name: 'Корпоративні інформаційні системи та технології',
-                  lecturer: 'Тимошин Ю.А.',
-                  room: '18-432 лекція',
-                  time: '8:30 - 10:05'
-                },
-                {
-                  name: 'Захист інформації в комп\'ютерних мережах',
-                  lecturer: 'Пасько В.П.',
-                  room: '18-419 лекція',
-                  time: '12:20 - 13:55'
-                }
-              ]
-            }
-          ]
+        2: {
+          days: []
         }
       }
     }
+  }
 
+  contractDayName(day) {
+    switch (day) {
+      case 'Понеділок':
+        return 'ПН';
+        break;
+      case 'Вівторок':
+        return 'ВТ';
+        break;
+      case 'Середа':
+        return 'СР';
+        break;
+      case 'Четвер':
+        return 'ЧТ';
+        break;
+      case 'П\’ятниця':
+        return 'ПТ';
+        break;
+      case 'Субота':
+        return 'СБ';
+        break;
+    }
+  }
+
+  getTimetableFromAPI() {
+    fetch('http://api.rozklad.org.ua/v2/groups/' + this.state.groupName + '/timetable')
+      .then(function(response) {
+        return response.json()
+      }).then(function(json) {
+        //parse data to convert to arrays and remove empty days
+        //week 1
+        json.data.weeks["1"].days = Object.keys(json.data.weeks["1"].days).map(key => json.data.weeks["1"].days[key]);
+        json.data.weeks["1"].days.map(function(item) {
+          if (!item.lessons.length) {
+            json.data.weeks["1"].days.pop(item);
+          }
+        });
+
+        //week 2
+        json.data.weeks["2"].days = Object.keys(json.data.weeks["2"].days).map(key => json.data.weeks["2"].days[key]);
+        json.data.weeks["2"].days.map(function(item) {
+          if (!item.lessons.length) {
+            json.data.weeks["2"].days.pop(item);
+          }
+        });
+        this.setState({weeks: json.data.weeks});
+      }.bind(this))
+      .catch(function(ex) {
+        console.log('parsing failed', ex)
+      })
+  }
+
+  componentDidMount() {
+    this.getTimetableFromAPI();
   }
 
   changeWeek(event, value) {
@@ -242,36 +101,38 @@ class App extends React.Component {
       <div>
         <AppBar
           title="CAMPUS TIMETABLE"
-          style={{boxShadow: ' 0 1px 0px rgba(0, 0, 0, 0.24)',backgroundColor:'#208843'}}
+          style={{boxShadow: ' 0 1px 0px rgba(0, 0, 0, 0.24)', backgroundColor: '#208843'}}
           showMenuIconButton={false}
           iconElementRight={
             <IconMenu
               value={this.state.currentWeek}
-              iconButtonElement={<IconButton><NavigationMoreVert /></IconButton>}
+              iconButtonElement={<IconButton>
+                <NavigationMoreVert />
+              </IconButton>}
               onChange={this.changeWeek}
             >
-              <MenuItem primaryText="1 тиждень" value="firstWeek"/>
-              <MenuItem primaryText="2 тиждень" value="secondWeek" />
+              <MenuItem primaryText="1 тиждень" value="1"/>
+              <MenuItem primaryText="2 тиждень" value="2" />
             </IconMenu>
             } />
-        <Tabs >
-        {this.state.weeks[this.state.currentWeek].days.map(function(day, index) {
+        <Tabs tabItemContainerStyle={{backgroundColor: '#208843'}}>
+        {this.state.weeks[this.state.currentWeek].days.map(function(day) {
           return (
-            <Tab label={day.name} key={index} style={{backgroundColor:'#208843'}}>
+            <Tab label={this.contractDayName(day.day_name)} key={day.day_number} style={{backgroundColor: '#208843'}}>
               <List>
-              {day.lessons.map(function(item, number) {
-                number++;
+              {day.lessons.map(function(item) {
                 return (
                   <div>
                     <ListItem
-                      primaryText={item.name}
-                      secondaryText={<LessonInfo room={item.room} lecturer={item.lecturer} time={item.time} />}
+                      key={item.lesson_number}
+                      primaryText={item.lesson_name}
+                      secondaryText={<LessonInfo room={item.lesson_room} type={item.lesson_type} lecturer={item.teacher_name} timeStart={item.time_start.split(':', 2).join(':')} timeEnd={item.time_end.split(':', 2).join(':')} />}
                       leftIcon={<i style={{
                         display: 'block',
                         top: '27%',
                         left: '12px',
                         padding: '0',
-                        background: 'url(img/number' + number + '.svg) no-repeat #FF5722',
+                        background: 'url(img/number' + item.lesson_number + '.svg) no-repeat #FF5722',
                         borderRadius: '36px',
                         backgroundSize: '48px 48px',
                         width: '48px',
@@ -285,7 +146,7 @@ class App extends React.Component {
               </List>
             </Tab>
           )
-        })}
+        }.bind(this))}
         </Tabs>
       </div>
 
@@ -300,21 +161,21 @@ class LessonInfo extends React.Component {
         <div style={{fontSize: '13px', paddingTop: '8px', color: '#03a9f4'}}>{this.props.lecturer}</div>
         <div>
           <div style={{
-            width: '70%',
+            width: '50%',
             float: 'left',
             padding: '5px 0',
             fontSize: "14px",
             fontWeight: '400'
-          }}>{this.props.room}</div>
+          }}>{this.props.room + ' ' + this.props.type}</div>
           <div style={{
-            width: '30%',
+            width: '50%',
             float: 'right',
             color: '#ff4081',
             padding: '5px 0',
             textAlign: 'right',
             fontSize: "14px",
             fontWeight: '400'
-          }}>{this.props.time}</div>
+          }}>{this.props.timeStart + ' - ' + this.props.timeEnd}</div>
           <div style={{clear: 'both'}}></div>
         </div>
       </div>
