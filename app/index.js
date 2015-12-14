@@ -10,7 +10,12 @@ const IconMenu = require('material-ui/lib/menus/icon-menu');
 const MenuItem = require('material-ui/lib/menus/menu-item');
 const IconButton = require('material-ui/lib/icon-button');
 const NavigationMoreVert = require('material-ui/lib/svg-icons/navigation/more-vert');
+const ManIcon = require('material-ui/lib/svg-icons/action/supervisor-account');
 const AppBar = require('material-ui/lib/app-bar');
+const Dialog = require('material-ui/lib/dialog');
+const TextField = require('material-ui/lib/text-field');
+const Snackbar = require('material-ui/lib/snackbar');
+
 
 let injectTapEventPlugin = require("react-tap-event-plugin");
 //Needed for onTouchTap
@@ -23,9 +28,14 @@ class App extends React.Component {
   constructor() {
     super();
     this.changeWeek = this.changeWeek.bind(this);
+    this.changeGroup = this.changeGroup.bind(this);
+    this.handleGroupIconTouch = this.handleGroupIconTouch.bind(this);
+    this.handleRequestClose = this.handleRequestClose.bind(this);
+
     this.state = {
+      showDialog: false,
       currentWeek: '1',
-      groupName: 'ft-42',
+      groupName: 'ik-21',
       weeks: {
         1: {
           days: []
@@ -37,7 +47,7 @@ class App extends React.Component {
     }
   }
 
-  contractDayName(day) {
+  static contractDayName(day) {
     switch (day) {
       case 'Понеділок':
         return 'ПН';
@@ -58,6 +68,7 @@ class App extends React.Component {
         return 'СБ';
         break;
     }
+
   }
 
   getTimetableFromAPI() {
@@ -84,8 +95,8 @@ class App extends React.Component {
         this.setState({weeks: json.data.weeks});
       }.bind(this))
       .catch(function(ex) {
-        console.log('parsing failed', ex)
-      })
+        this.refs.snackbar.show();
+      }.bind(this))
   }
 
   componentDidMount() {
@@ -96,13 +107,56 @@ class App extends React.Component {
     this.setState({currentWeek: value});
   }
 
+  changeGroup() {
+    new Promise(function(resolve, reject) {
+      this.setState({groupName: this.refs.textBox.getValue(), showDialog: false});
+      resolve();
+    }.bind(this))
+      .then(function() {
+        this.getTimetableFromAPI();
+      }.bind(this));
+
+
+  }
+
+  handleGroupIconTouch() {
+    this.setState({showDialog: true});
+  }
+
+  handleRequestClose() {
+    this.setState({showDialog: false});
+  }
+
   render() {
+    let standardActions = [
+      {text: 'Відмінити'},
+      {text: 'Ок', onTouchTap: this.changeGroup, ref: 'submit'}
+    ];
+
     return (
       <div>
+        <Dialog
+          title="Виберіть групу"
+          actions={standardActions}
+          actionFocus="submit"
+          open={this.state.showDialog}
+          onRequestClose={this.handleRequestClose}>
+          <TextField
+            hintText="Шифр групи"
+            defaultValue={this.state.groupName}
+            ref="textBox"/>
+        </Dialog>
         <AppBar
           title="CAMPUS TIMETABLE"
           style={{boxShadow: ' 0 1px 0px rgba(0, 0, 0, 0.24)', backgroundColor: '#208843'}}
-          showMenuIconButton={false}
+
+          iconElementLeft={
+            <div onTouchTap={this.handleGroupIconTouch}>
+              <IconButton >
+                <ManIcon color='#fff'/>
+              </IconButton>
+            </div>
+            }
           iconElementRight={
             <IconMenu
               value={this.state.currentWeek}
@@ -115,10 +169,14 @@ class App extends React.Component {
               <MenuItem primaryText="2 тиждень" value="2" />
             </IconMenu>
             } />
-        <Tabs tabItemContainerStyle={{backgroundColor: '#208843'}}>
+        <Tabs style={{width: '100%', position: 'fixed', top: '64px'}}
+          tabItemContainerStyle={{backgroundColor: '#208843'}} contentContainerStyle={{
+          height: window.innerHeight - 100,
+          overflow: 'scroll'
+        }}>
         {this.state.weeks[this.state.currentWeek].days.map(function(day) {
           return (
-            <Tab label={this.contractDayName(day.day_name)} key={day.day_number} style={{backgroundColor: '#208843'}}>
+            <Tab label={App.contractDayName(day.day_name)} key={day.day_number} style={{backgroundColor: '#208843'}}>
               <List>
               {day.lessons.map(function(item) {
                 return (
@@ -146,8 +204,9 @@ class App extends React.Component {
               </List>
             </Tab>
           )
-        }.bind(this))}
+        })}
         </Tabs>
+        <Snackbar message="Сервіс недоступний!" autoHideDuration={2000} ref="snackbar" bodyStyle={{textAlign:'center'}}/>
       </div>
 
     )
